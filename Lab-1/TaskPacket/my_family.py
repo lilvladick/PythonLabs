@@ -20,11 +20,20 @@ my_family_height = [
 # Выведите на консоль рост отца в формате
 #   Рост отца - ХХ см
 
-print(f"Рост отца - {my_family_height[0][1]} см")
-sum = 0
-for i in my_family_height:
-    sum+=i[1]
+def get_father_height(my_family_h):
+    for person in my_family_height:
+        if person[0] == 'Отец':
+            return f"Рост отца - {person[1]} см"
+    return "Рост отца не указан"
+
+print(get_father_height(my_family_height))
+
+def get_family_height(my_family_h):
+    sum = 0
+    for i in my_family_height:
+        sum += i[1]
+    return "Общий рост моей семьи - "+str(sum)+" см"
     #   print(i[0] + " - " + str(i[1])+" см")
 # Выведите на консоль общий рост вашей семьи как сумму ростов всех членов
 #   Общий рост моей семьи - ХХ см
-print("Общий рост моей семьи - "+str(sum)+" см")
+print(get_family_height(my_family_height))

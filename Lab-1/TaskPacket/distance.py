@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import math
 
+
 # Есть словарь координат городов
 
 sites = {

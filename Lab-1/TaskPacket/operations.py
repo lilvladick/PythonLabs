@@ -13,4 +13,7 @@ print(result)
 
 # TODO написать формулу для 1 2 3 4 5 и вывести значение на консоль
 
-print(1*2+3+4*5)
+def operationsFunc(numbers: [int]):
+    return numbers[0]*numbers[1]+numbers[2]+numbers[3]*numbers[4]
+
+print(operationsFunc([1,2,3,4,5]))

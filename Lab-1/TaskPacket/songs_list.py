@@ -25,6 +25,8 @@ violator_songs_list = [
 
 # TODO здесь ваш код
 
+
+
 violator_songs_map = {song[0]: song[1] for song in violator_songs_list}
 time1 = violator_songs_map['Halo'] + violator_songs_map['Enjoy the Silence'] + violator_songs_map['Clean']
 print(f"Три песни звучат {time1:.2f} минут")
