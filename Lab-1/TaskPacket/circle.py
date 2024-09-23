@@ -46,4 +46,7 @@ print(point_in_circle(point_2, 42))
 # False
 # False
 
-
+def solve():
+    print(area_calc(42))
+    print(point_in_circle(point_1, 42))
+    print(point_in_circle(point_2, 42))

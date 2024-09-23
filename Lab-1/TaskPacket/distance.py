@@ -14,22 +14,23 @@ sites = {
 # Составим словарь словарей расстояний между ними
 # расстояние на координатной сетке - ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
-distances = {}
 
 # TODO здесь заполнение словаря
 
-for i in sites:
-    distances[i] = {}
-    for j in sites:
-        if i != j:
-            x1, y1 = sites[i]
-            x2, y2 = sites[j]
+def get_distance():
+    distances = {}
+    for i in sites:
+        distances[i] = {}
+        for j in sites:
+            if i != j:
+                x1, y1 = sites[i]
+                x2, y2 = sites[j]
 
-            distance = math.sqrt((x1 - x2)**2 + (y1-y2)**2)
-            distances[i][j] = distance
+                distance = math.sqrt((x1 - x2)**2 + (y1-y2)**2)
+                distances[i][j] = distance
+    return distances
 
-
-print(distances)
+print(get_distance())
 
 
 

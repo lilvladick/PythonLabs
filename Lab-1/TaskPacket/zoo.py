@@ -42,3 +42,10 @@ def get_animal_index_but_for_normal_peoples(zoo: list, animal:str):
 
 zooooo = ['lion', 'kangaroo', 'elephant', 'monkey', 'rooster', 'ostrich', 'lark']
 print(str(get_animal_index_but_for_normal_peoples(zooooo, 'lion')) , str(get_animal_index_but_for_normal_peoples(zooooo, 'lark')))
+
+def solve():
+    print(new_animal(['lion', 'kangaroo', 'elephant', 'monkey', ], 1, 'bear'))
+    print(new_animals(['lion', 'kangaroo', 'elephant', 'monkey', ], ['rooster', 'ostrich', 'lark', ]))
+    print(free_the_beast(['lion', 'kangaroo', 'elephant', 'monkey', ], 'elephant'))
+    print(str(get_animal_index_but_for_normal_peoples(zooooo, 'lion')),
+          str(get_animal_index_but_for_normal_peoples(zooooo, 'lark')))
