@@ -12,14 +12,33 @@ meadow = ('клевер', 'одуванчик', 'ромашка', 'клевер'
 # meadow_set =
 # TODO здесь ваш код
 
+garden_set = set(garden)
+meadow_set = set(meadow)
+
 # выведите на консоль все виды цветов
 # TODO здесь ваш код
+
+all_flowers = garden_set.union(meadow_set)
+
+print(", ".join(all_flowers))
 
 # выведите на консоль те, которые растут и там и там
 # TODO здесь ваш код
 
+gm_flowers = garden_set & meadow_set
+
+print(", ".join(gm_flowers))
+
 # выведите на консоль те, которые растут в саду, но не растут на лугу
 # TODO здесь ваш код
 
+u_garden_flowers = garden_set - meadow_set
+
+print(", ".join(u_garden_flowers))
+
 # выведите на консоль те, которые растут на лугу, но не растут в саду
 # TODO здесь ваш код
+
+u_meadow_flowers = meadow_set - garden_set
+
+print(", ".join(u_meadow_flowers))

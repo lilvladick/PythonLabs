@@ -25,4 +25,4 @@ print(zoo)
 # выведите на консоль в какой клетке сидит лев (lion) и жаворонок (lark).
 # Номера при выводе должны быть понятны простому человеку, не программисту.
 # TODO здесь ваш код
-print(str(zoo.index('lion')) , str(zoo.index('lark')))
+print(str(zoo.index('lion')+1) , str(zoo.index('lark')+1))

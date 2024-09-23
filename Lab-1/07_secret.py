@@ -17,8 +17,10 @@ secret_message = [
 one_w = secret_message[0][3]
 two_w = secret_message[1][9:13]
 three_w = secret_message[2][5:15:2]
-four_w = secret_message[3][12:7:-1]
+four_w = secret_message[3][12:6:-1]
 five_w = secret_message[4][20:15:-1]
+
+result = one_w + " " + two_w + " " + three_w + " " + four_w + " " + five_w
 # Ключ к расшифровке:
 #   первое слово - 4-я буква
 #   второе слово - буквы с 10 по 13, включительно
@@ -38,5 +40,5 @@ five_w = secret_message[4][20:15:-1]
 #   Если нужны вычисления и разные пробы - делайте это в консоли пайтона, тут нужен только результат
 
 # TODO вывести расшифрованное сообщение
-result = one_w + " " + two_w + " " + three_w + " " + four_w + " " + five_w
+
 print(result)

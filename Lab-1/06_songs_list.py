@@ -25,8 +25,9 @@ violator_songs_list = [
 
 # TODO здесь ваш код
 
-time1 = round(violator_songs_list[3][1] + violator_songs_list[5][1] + violator_songs_list[8][1])
-print(f"Три песни звучат {time1} минут")
+violator_songs_map = {song[0]: song[1] for song in violator_songs_list}
+time1 = violator_songs_map['Halo'] + violator_songs_map['Enjoy the Silence'] + violator_songs_map['Clean']
+print(f"Три песни звучат {time1:.2f} минут")
 
 # Есть словарь песен группы Depeche Mode
 violator_songs_dict = {
@@ -47,8 +48,5 @@ violator_songs_dict = {
 # TODO здесь ваш код
 
 time2 = 0
-for i in violator_songs_dict:
-    if i != 'Sweetest Perfection' and i != 'Policy of Truth' and i != 'Blue Dress':
-        time2 += violator_songs_dict[i]
-
+time2+=violator_songs_dict['Sweetest Perfection'] + violator_songs_dict['Blue Dress'] + violator_songs_dict['Policy of Truth']
 print(f"А другие три песни звучат {round(time2)} минут")
