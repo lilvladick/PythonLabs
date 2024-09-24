@@ -14,13 +14,14 @@ secret_message = [
 # Нужно его расшифровать и вывести на консоль в удобочитаемом виде.
 # Должна получиться фраза на русском языке, например: как два байта переслать.
 
-one_w = secret_message[0][3]
-two_w = secret_message[1][9:13]
-three_w = secret_message[2][5:15:2]
-four_w = secret_message[3][12:6:-1]
-five_w = secret_message[4][20:15:-1]
+def get_answer(secret_mes: [str]):
+    return (secret_mes[0][3]+ " "
+            + secret_mes[1][9:13] + " "
+            + secret_mes[2][5:15:2] + " "
+            + secret_mes[3][12:6:-1] + " "
+            + secret_mes[4][20:15:-1])
 
-result = one_w + " " + two_w + " " + three_w + " " + four_w + " " + five_w
+result = get_answer(secret_message)
 # Ключ к расшифровке:
 #   первое слово - 4-я буква
 #   второе слово - буквы с 10 по 13, включительно
