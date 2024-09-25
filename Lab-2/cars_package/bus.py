@@ -1,9 +1,9 @@
-from vehicle import Vehicle
+from .vehicle import Vehicle
 
-class Car(Vehicle):
-    def __init__(self, fuel_consumption, fuel_type, passengers):
+class Bus(Vehicle):
+    def __init__(self, fuel_consumption, fuel_type, passenger_capacity):
         super().__init__(fuel_consumption, fuel_type)
-        self.passengers = passengers
+        self.passenger_capacity = passenger_capacity
 
     def calculate_fuel_consumption(self, load):
         return self.fuel_consumption * (1 + load / 100)
@@ -13,4 +13,4 @@ class Car(Vehicle):
         return fuel_consumed * fuel_price
 
     def __str__(self):
-        return f"Машина с {self.passengers} пассажирами"
+        return f"Автобус вмещает {self.passenger_capacity} пассажиров"
