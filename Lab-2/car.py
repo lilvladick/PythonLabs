@@ -11,3 +11,6 @@ class Car(Vehicle):
     def calculate_travel_cost(self, distance, fuel_price):
         fuel_consumed = self.calculate_fuel_consumption(0) * distance / 100
         return fuel_consumed * fuel_price
+
+    def __str__(self):
+        return f"Машина с {self.passengers} пассажирами"

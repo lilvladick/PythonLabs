@@ -34,3 +34,6 @@ class Vehicle(ABC):
     @abstractmethod
     def calculate_travel_cost(self, distance, fuel_price):
         pass
+
+    def __str__(self):
+        return f"Тип топлива автомобиля {self.fuel_type}"
