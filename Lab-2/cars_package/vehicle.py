@@ -32,7 +32,7 @@ class Vehicle(ABC):
 
     """Подсчет стоимости поездки"""
     @abstractmethod
-    def calculate_travel_cost(self, distance, fuel_price):
+    def calculate_travel_cost(self, distance, fuel_price, fuel_consumption):
         pass
 
     def __str__(self):
