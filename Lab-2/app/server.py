@@ -1,6 +1,5 @@
 from enum import Enum
 from fastapi import FastAPI
-from cars_package.vehicle import Vehicle
 from cars_package import Car, Truck, Bus
 import platform
 import os
@@ -30,19 +29,30 @@ def console_clear():
         print("Грязная консоль останется да-да")
 
 def save_to_sqlite3(obj, load, distance, fuel_type, travel_cost):
-    sqlite_conn = sqlite3.connect('costs.db')
-    cursor = sqlite_conn.cursor()
+    with sqlite3.connect('database/costs.db') as conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("""CREATE TABLE IF NOT EXISTS travel_costs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                vehicle_type TEXT NOT NULL,
+                fuel_consumption REAL NOT NULL,
+                weight REAL NOT NULL,
+                distance REAL NOT NULL,
+                fuel_type TEXT NOT NULL,
+                travel_cost REAL NOT NULL);""")
 
-    vehicle_type = type(obj).__name__
-    cursor.execute("""
-               INSERT INTO travel_costs (vehicle_type, fuel_consumption, weight, distance, fuel_type, travel_cost)
-               VALUES (?, ?, ?, ?, ?, ?)
-           """, (vehicle_type, obj.calculate_fuel_consumption(load), load, distance, fuel_type, travel_cost))
+            vehicle_type = type(obj).__name__
+            cursor.execute(
+                "INSERT INTO travel_costs (vehicle_type, fuel_consumption, weight, distance, fuel_type, travel_cost) VALUES (?, ?, ?, ?, ?, ?)",
+                (vehicle_type, obj.calculate_fuel_consumption(load), load, distance, fuel_type, travel_cost))
+            conn.commit()
+        except Exception as e:
+            print(e)
+            # Обработка ошибок
+            pass
 
-    sqlite_conn.commit()
     print("Данные успешно сохранены в SQLite базе данных")
 
-    sqlite_conn.close()
 
 class car_type(Enum):
     car = 1
@@ -78,10 +88,3 @@ def calculate_car_cost(request: request):
 @app.get("/fuel-types/")
 def get_fuel_types():
     return {"fuel_types": list(fuel_prices.keys())}
-
-@app.post("/save-to-docx/")
-def save_to_docx(result: str):
-    doc = Document()
-    doc.add_paragraph(result)
-    doc.save("costs.docx")
-    return {"message": "Файл сохранен"}
