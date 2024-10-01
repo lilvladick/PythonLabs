@@ -2,6 +2,7 @@ from cars_package import Car, Bus, Truck
 import platform
 import os
 from docx import Document
+import sqlite3
 
 
 fuel_prices = {
@@ -71,9 +72,35 @@ def get_info(obj):
         doc.add_paragraph(result)
         doc.save("costs.docx")
         print("Файл сохранен")
-
+    save_to_sqlite3(obj, weight, distance, fuel_type, travel_cost)
     input("Для продолжения нажмите любую кнопку")
     console_clear()
+
+
+def save_to_sqlite3(obj, load, distance, fuel_type, travel_cost):
+    with sqlite3.connect('database/costs.db') as conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("""CREATE TABLE IF NOT EXISTS travel_costs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                vehicle_type TEXT NOT NULL,
+                fuel_consumption REAL NOT NULL,
+                weight REAL NOT NULL,
+                distance REAL NOT NULL,
+                fuel_type TEXT NOT NULL,
+                travel_cost REAL NOT NULL);""")
+
+            vehicle_type = type(obj).__name__
+            cursor.execute(
+                "INSERT INTO travel_costs (vehicle_type, fuel_consumption, weight, distance, fuel_type, travel_cost) VALUES (?, ?, ?, ?, ?, ?)",
+                (vehicle_type, obj.calculate_fuel_consumption(load), load, distance, fuel_type, travel_cost))
+            conn.commit()
+        except Exception as e:
+            print(e)
+            # Обработка ошибок
+            pass
+
+    print("Данные успешно сохранены в SQLite базе данных")
 
 def console_clear():
     op = platform.system()

@@ -29,8 +29,9 @@
 ### Класс Truck
 Этот класс представляет грузовой автомобиль и наследует свойства и методы от класса `Vehicle`. Дополнительно он имеет свойство `cargo_capacity` и реализует метод `calculate_fuel_consumption`, учитывающий вес груза.
 #### Пример создания экземпляра класса
+
 ```python
-from cars_package import Truck
+from app.cars_package import Truck
 
 # Создаст объект класса Truck с заданными параметрами
 truck = Truck(14.5, "Petrol92", 4000)
@@ -39,8 +40,9 @@ truck = Truck(14.5, "Petrol92", 4000)
 ### Класс Car
 Этот класс представляет легковой автомобиль и наследует свойства и методы от класса `Vehicle`. Дополнительно он имеет свойство `passengers` и реализует метод `calculate_fuel_consumption`, учитывающий количество пассажиров.
 #### Пример создания экземпляра класса
+
 ```python
-from cars_package import Car
+from app.cars_package import Car
 
 # Создаст объект класса Car с заданными параметрами
 car = Car(6.5, "Petrol98", 4) 
@@ -49,8 +51,9 @@ car = Car(6.5, "Petrol98", 4)
 ### Класс Bus
 Этот класс представляет автобус и наследует свойства и методы от класса `Vehicle`. Дополнительно он имеет свойство `passenger_capacity` и реализует метод `calculate_fuel_consumption`, учитывающий количество пассажиров.
 #### Пример создания экземпляра класса
+
 ```python
-from cars_package import Bus
+from app.cars_package import Bus
 
 # Создаст объект класса Bus с заданными параметрами
 bus = Bus(11.0, "Diesel", 40) 

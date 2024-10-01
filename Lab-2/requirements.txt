@@ -1,6 +1,0 @@
-python 3.12
-pytest
-python-docx
-platform
-os
-abc
