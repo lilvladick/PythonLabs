@@ -1,6 +1,5 @@
 import pytest
 from cars_package import Car, Bus, Truck
-from cars_package.vehicle import Vehicle
 
 fuel_prices = {
     "Petrol92": 48.70,
