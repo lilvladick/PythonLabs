@@ -19,7 +19,7 @@ def database_connect():
         return None
 
 
-def make_query(connection, query):
+def get_data(connection, query):
     try:
         cursor = connection.cursor()
         cursor.execute(query)
@@ -35,4 +35,5 @@ def database_close_connection(connection):
         connection.close()
         print("Connection Closed")
 
-
+def save_data():
+    pass

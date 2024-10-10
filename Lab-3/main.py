@@ -1,6 +1,7 @@
 import flet as ft
 from server import database_connection
 
+product_rows = []
 
 def create_input_form():
     categories = ["Электроника", "Недвижимость", "Транспорт", "Другое"]
@@ -18,9 +19,22 @@ def create_input_form():
         title = title_field.value
         description = description_field.value
         price = price_field.value
-        result_text = ft.Text(f"title: {title}, desc: {description}, price {price}")
-        e.control.content.controls.append(result_text)
-        e.control.update()
+
+        product_rows.append({
+            'title': title,
+            'description': description,
+            'price': price,
+            'category': category_field.value,
+            'contacts': seller_contacts.value
+        })
+        print(product_rows)
+
+        title_field.value = ""
+        description_field.value = ""
+        price_field.value = ""
+        category_field.value = None
+        seller_contacts.value = ""
+
 
     save_button = ft.ElevatedButton("Save", on_click=save_button_click)
 
@@ -36,9 +50,9 @@ def create_input_form():
         ]
     )
 
+
 def create_data_table(connection):
-    result = database_connection.make_query(connection, "SELECT title, description, price, category, seller_contacts FROM products")
-    product_rows = []
+    result = database_connection.get_data(connection, "SELECT title, description, price, category, seller_contacts FROM products")
     for row in result:
         product_rows.append({
             'title': row[0],
@@ -47,7 +61,6 @@ def create_data_table(connection):
             'category': row[3],
             'contacts': row[4]
         })
-
     columns = [
         ft.DataColumn(ft.Text("Title")),
         ft.DataColumn(ft.Text("Description")),
@@ -70,11 +83,30 @@ def create_data_table(connection):
     data_table = ft.DataTable(columns=columns, rows=[create_data_row(product) for product in product_rows])
     return data_table
 
+
+
 def main(page: ft.Page):
     connection = database_connection.database_connect()
     data_table = create_data_table(connection)
 
     input_form = create_input_form()
+
+    def update_table(e):
+        data_table.rows = [create_data_row(product) for product in product_rows]
+        page.update()
+
+
+
+    def create_data_row(product):
+        return ft.DataRow(
+            cells=[
+                ft.DataCell(ft.Text(product['title'])),
+                ft.DataCell(ft.Text(product['description'])),
+                ft.DataCell(ft.Text(str(product['price']))),
+                ft.DataCell(ft.Text(product['category'])),
+                ft.DataCell(ft.Text(product['contacts']))
+            ]
+        )
 
     t = ft.Tabs(
         selected_index=0,
@@ -97,9 +129,11 @@ def main(page: ft.Page):
         expand=1,
     )
 
+
     page.title = "App Title"
     page.horizontal_alignment = "center"
     page.add(t)
+    page.add(ft.ElevatedButton("Обновить доску", on_click=lambda e: update_table(e)))
 
 if __name__ == '__main__':
     ft.app(main)
