@@ -1,5 +1,5 @@
 import flet as ft
-from database_connection import *
+from postgre.database_connection import *
 
 product_rows = []
 
