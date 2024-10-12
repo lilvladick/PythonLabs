@@ -1,9 +1,12 @@
 import flet as ft
+import logging
 from postgre.database_connection import *
 
 product_rows = []
+logging.basicConfig(filename='app.log', level=logging.INFO)
 
 def create_input_form(connection):
+    logging.info("Создана форма ввода")
     categories = ["Электроника", "Недвижимость", "Транспорт", "Другое"]
     title_field = ft.TextField(label="Название объявления", width=300)
     description_field = ft.TextField(label="Описание", width=300)
@@ -27,16 +30,15 @@ def create_input_form(connection):
             'category': category_field.value,
             'contacts': seller_contacts.value
         })
-        print(product_rows)
 
         save_data(connection, [title, description, price, category_field.value, seller_contacts.value])
+        logging.info("Данные сохранены")
 
         title_field.value = ""
         description_field.value = ""
         price_field.value = ""
         category_field.value = None
         seller_contacts.value = ""
-
 
     save_button = ft.ElevatedButton("Save", on_click=save_button_click)
 
@@ -83,11 +85,13 @@ def create_data_table(connection):
         )
 
     data_table = ft.DataTable(columns=columns, rows=[create_data_row(product) for product in product_rows])
+    logging.info("Таблица создана")
     return data_table
 
 
 
 def main(page: ft.Page):
+    logging.info("Программа запущена")
     connection = database_connect()
     data_table = create_data_table(connection)
 
@@ -96,10 +100,12 @@ def main(page: ft.Page):
     def update_table(e):
         data_table.rows = [create_data_row(product) for product in product_rows]
         page.update()
+        logging.info("таблица обновлена")
 
 
 
     def create_data_row(product):
+        logging.info("таблица создана")
         return ft.DataRow(
             cells=[
                 ft.DataCell(ft.Text(product['title'])),
@@ -132,7 +138,7 @@ def main(page: ft.Page):
     )
 
 
-    page.title = "App Title"
+    page.title = "Доска 24"
     page.horizontal_alignment = "center"
     page.add(t)
     page.add(ft.ElevatedButton("Обновить доску", on_click=lambda e: update_table(e)))
