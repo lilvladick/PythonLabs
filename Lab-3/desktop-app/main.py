@@ -1,9 +1,9 @@
 import flet as ft
-from server import database_connection
+from database_connection import *
 
 product_rows = []
 
-def create_input_form():
+def create_input_form(connection):
     categories = ["Электроника", "Недвижимость", "Транспорт", "Другое"]
     title_field = ft.TextField(label="Название объявления", width=300)
     description_field = ft.TextField(label="Описание", width=300)
@@ -29,6 +29,8 @@ def create_input_form():
         })
         print(product_rows)
 
+        save_data(connection, [title, description, price, category_field.value, seller_contacts.value])
+
         title_field.value = ""
         description_field.value = ""
         price_field.value = ""
@@ -52,7 +54,7 @@ def create_input_form():
 
 
 def create_data_table(connection):
-    result = database_connection.get_data(connection, "SELECT title, description, price, category, seller_contacts FROM products")
+    result = get_data(connection, "SELECT title, description, price, category, seller_contacts FROM products")
     for row in result:
         product_rows.append({
             'title': row[0],
@@ -86,10 +88,10 @@ def create_data_table(connection):
 
 
 def main(page: ft.Page):
-    connection = database_connection.database_connect()
+    connection = database_connect()
     data_table = create_data_table(connection)
 
-    input_form = create_input_form()
+    input_form = create_input_form(connection)
 
     def update_table(e):
         data_table.rows = [create_data_row(product) for product in product_rows]

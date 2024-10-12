@@ -35,5 +35,13 @@ def database_close_connection(connection):
         connection.close()
         print("Connection Closed")
 
-def save_data():
-    pass
+def save_data(connection, data):
+    try:
+        cursor = connection.cursor()
+        cursor.execute(f"INSERT INTO products (title, description, price, category, seller_contacts) VALUES ('{data[0]}','{data[1]}',{data[2]},'{data[3]}','{data[4]}')")
+        connection.commit()
+
+    except (Exception, Error) as error:
+        print("Query ERROR", error)
+        connection.rollback()
+        return None
