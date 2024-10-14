@@ -1,11 +1,124 @@
-.body {
+body {
     padding: 0;
     margin: 0;
+    color:white;
+    background-color: #111;
 }
 
 .header {
     display: flex;
     font-weight: 800;
     font-size: 3vw;
+    justify-content: space-between;
+}
+
+.logo, .update {
+    margin: 10px;
+}
+
+.logo {
+    max-width: 60px;
+    margin: 20px 100px;
+}
+
+.advertisements {
+    display: flex;
     justify-content: center;
+}
+
+.table {
+    margin: 5vh 10vw;
+    color: rgb(255, 255, 255);
+	width: 100%;
+	margin-bottom: 20px;
+	border-radius: 10px;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+.table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #222;
+	border-bottom: 5px solid #111;
+}
+.table td {
+	padding: 5px;
+	border-bottom: 3px solid #111;
+}
+
+.update {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.music-ya {
+    color: rgb(255, 255, 255);
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+
+}
+
+
+.update:before, .table:before, .music-ya:before {
+    content: "";
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: update-glow 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.update:after, .table:after, .music-ya:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.music {
+    font-weight: 500;
+    position: relative;
+    bottom: 0;
+    font-size: 2vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+@keyframes update-glow {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
