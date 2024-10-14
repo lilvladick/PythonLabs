@@ -6,7 +6,7 @@ product_rows = []
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
 def create_input_form(connection):
-    logging.info("Создана форма ввода")
+    logging.info("Input form created")
     categories = ["Электроника", "Недвижимость", "Транспорт", "Другое"]
     title_field = ft.TextField(label="Название объявления", width=300)
     description_field = ft.TextField(label="Описание", width=300)
@@ -32,7 +32,7 @@ def create_input_form(connection):
         })
 
         save_data(connection, [title, description, price, category_field.value, seller_contacts.value])
-        logging.info("Данные сохранены")
+        logging.info("data saved")
 
         title_field.value = ""
         description_field.value = ""
@@ -85,13 +85,13 @@ def create_data_table(connection):
         )
 
     data_table = ft.DataTable(columns=columns, rows=[create_data_row(product) for product in product_rows])
-    logging.info("Таблица создана")
+    logging.info("Table created")
     return data_table
 
 
 
 def main(page: ft.Page):
-    logging.info("Программа запущена")
+    logging.info("Program started")
     connection = database_connect()
     data_table = create_data_table(connection)
 
@@ -100,12 +100,12 @@ def main(page: ft.Page):
     def update_table(e):
         data_table.rows = [create_data_row(product) for product in product_rows]
         page.update()
-        logging.info("таблица обновлена")
+        logging.info("Table updated")
 
 
 
     def create_data_row(product):
-        logging.info("таблица создана")
+        logging.info("Table created")
         return ft.DataRow(
             cells=[
                 ft.DataCell(ft.Text(product['title'])),
