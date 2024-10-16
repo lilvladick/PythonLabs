@@ -1,6 +1,7 @@
 import flet as ft
 import logging
 from postgre.database_connection import *
+from models import *
 
 product_rows = []
 logging.basicConfig(filename='app.log', level=logging.INFO)
@@ -31,7 +32,14 @@ def create_input_form(connection):
             'contacts': seller_contacts.value
         })
 
-        save_data(connection, [title, description, price, category_field.value, seller_contacts.value])
+        advertisements = Advertisements()
+        advertisements.title = title
+        advertisements.description = description
+        advertisements.price = price
+        advertisements.category = category_field.value
+        advertisements.seller_contacts = seller_contacts.value
+
+        save_data(connection, advertisements)
         logging.info("data saved")
 
         title_field.value = ""

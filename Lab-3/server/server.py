@@ -1,5 +1,6 @@
 from  fastapi import FastAPI
 from postgre import database_connection
+from models import Advertisements, AdvertisementsRequest
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -36,6 +37,15 @@ async def get_data():
              "category": row[3],
              "seller_contacts": row[4],} for row in result]
 
-@app.post("/upload_data")
-async def get_data():
-    pass
+@app.post("/save_data")
+async def save_data(data: AdvertisementsRequest):
+    connection = database_connection.database_connect()
+    advertisements = Advertisements()
+    advertisements.title = data.title
+    advertisements.description = data.description
+    advertisements.price =data.price
+    advertisements.category = data.category
+    advertisements.seller_contacts = data.seller_contacts
+    database_connection.save_data(connection, advertisements)
+    database_connection.database_close_connection(connection)
+    return data

@@ -1,5 +1,6 @@
 import psycopg2
 from psycopg2 import Error
+from models import Advertisements
 
 
 def database_connect():
@@ -24,6 +25,7 @@ def get_data(connection, query):
         cursor = connection.cursor()
         cursor.execute(query)
         result = cursor.fetchall()
+        cursor.close()
         return result
     except (Exception, Error) as error:
         print("Query ERROR", error)
@@ -35,11 +37,12 @@ def database_close_connection(connection):
         connection.close()
         print("Connection Closed")
 
-def save_data(connection, data):
+def save_data(connection, data: Advertisements):
     try:
         cursor = connection.cursor()
-        cursor.execute(f"INSERT INTO products (title, description, price, category, seller_contacts) VALUES ('{data[0]}','{data[1]}',{data[2]},'{data[3]}','{data[4]}')")
+        cursor.execute(f"INSERT INTO products (title, description, price, category, seller_contacts) VALUES ('{data.title}','{data.description}',{data.price},'{data.category}','{data.seller_contacts}')")
         connection.commit()
+        cursor.close()
 
     except (Exception, Error) as error:
         print("Query ERROR", error)

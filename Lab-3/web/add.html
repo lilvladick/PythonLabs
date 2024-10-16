@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doska 24</title>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <div class="header-add">
+        <span>Добавление нового объявления</span>
+        <button class="button" id="saveButton" type="button" onclick="saveData()">Сохранить</button>
+    </div>
+    <div class="formcontainer">
+        <form class="inputform">
+            <label for="title">Название</label>
+            <input type="text" id="title" placeholder="Телефон">
+            <label for="description">Описание</label>
+            <input type="text" id="description" placeholder="Не новый">
+            <label for="price">Цена</label>
+            <input type="text" id="price" placeholder="12345">
+            <label for="category">Категория</label>
+            <select id="category">
+                <option value="">Выберите категорию</option>
+                <option value="Электроника">Электроника</option>
+                <option value="Недвижимость">Недвижимость</option>
+                <option value="Транспорт">Транспорт</option>
+                <option value="Другое">Другое</option>
+            </select>
+            <label for="contacts">Контакты</label>
+            <input type="text" id="contacts" placeholder="Вася Пупкие">
+        </form>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

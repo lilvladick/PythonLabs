@@ -3,22 +3,62 @@ body {
     margin: 0;
     color:white;
     background-color: #111;
+    border-radius: 10px;
 }
+.inputform {
+    margin-top: 2vh;
+    font-weight: bold;
+    text-align: center;
+    font-size: large;
+
+}
+.header-add {
+    display: flex;
+    justify-content: center;
+    font-size: 3vw;
+    font-weight: 800;
+}
+
+.buttons {
+    position:absolute;
+    right: 0;
+    margin-right: 2vw;
+}
+
+#title, #description, #price, #category, #contacts {
+    height: 3vh;
+    border: none;
+    background-color: #222;
+    border-radius: 10px;
+    color: #777;
+    font-size: medium;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 2vh;
+    margin-top: 0.7vh;
+}
+
+.formcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.inputform {
+    width: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
 
 .header {
     display: flex;
+    justify-content: center;
     font-weight: 800;
     font-size: 3vw;
-    justify-content: space-between;
 }
 
-.logo, .update {
+.update {
     margin: 10px;
-}
-
-.logo {
-    max-width: 60px;
-    margin: 20px 100px;
 }
 
 .advertisements {
@@ -47,12 +87,17 @@ body {
 	border-bottom: 3px solid #111;
 }
 
-.update:hover {
+.button:hover {
     transform: scale(1.05);
     transition: 0.3s ease-in-out;
 }
+#saveButton {
+    position: absolute;
+    right: 0;
+    margin: 2vh 2vw;
+}
 
-.update {
+.button {
     padding: 0.6em 2em;
     border: none;
     outline: none;
@@ -67,16 +112,8 @@ body {
     touch-action: manipulation;
 }
 
-.music-ya {
-    color: rgb(255, 255, 255);
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
 
-}
-
-
-.update:before, .table:before, .music-ya:before {
+.button:before, .table:before {
     content: "";
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
@@ -93,7 +130,7 @@ body {
     border-radius: 10px;
 }
 
-.update:after, .table:after, .music-ya:after {
+.button:after, .table:after {
     z-index: -1;
     content: "";
     position: absolute;
@@ -103,16 +140,6 @@ body {
     left: 0;
     top: 0;
     border-radius: 10px;
-}
-
-.music {
-    font-weight: 500;
-    position: relative;
-    bottom: 0;
-    font-size: 2vw;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 }
 
 
