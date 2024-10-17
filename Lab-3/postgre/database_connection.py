@@ -20,10 +20,10 @@ def database_connect():
         return None
 
 
-def get_data(connection, query):
+def get_data(connection):
     try:
         cursor = connection.cursor()
-        cursor.execute(query)
+        cursor.execute("SELECT title, description, price, category, seller_contacts FROM products")
         result = cursor.fetchall()
         cursor.close()
         return result

@@ -1,10 +1,11 @@
 import pytest
 from psycopg2 import Error
 from postgre import database_connect, get_data, database_close_connection, save_data
+from models import Advertisements
 
 test_data = [
-    ("Test", "TEST", 10.99, "Электроника", "Саня Хмурый"),
-    ("Test 2", "TEST 2", 5.99, "Электроника", "Егор Нехмуренко"),
+    Advertisements(title="Test", description="TEST", price=10.99, category="Электроника", seller_contacts="Саня Хмурый"),
+    Advertisements(title="Test 2", description="TEST 2", price=5.99, category="Электроника", seller_contacts="Егор Нехмуренко")
 ]
 
 test_queries = [
@@ -47,7 +48,7 @@ def test_database_close_connection():
 def test_save_data_error(db_connection):
     if db_connection is None:
         pytest.skip("Database connection failed")
-    invalid_data = ("Invalid", "Description", "invalid", "Category", "Seller")
+    invalid_data = Advertisements(title="Invalid", description="TEST", price="invalid", category="Электроника", seller_contacts="Саня Хмурый")
     result = save_data(db_connection, invalid_data)
     assert result is None, "Expected save data to fail"
 

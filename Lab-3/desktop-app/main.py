@@ -32,14 +32,9 @@ def create_input_form(connection):
             'contacts': seller_contacts.value
         })
 
-        advertisements = Advertisements()
-        advertisements.title = title
-        advertisements.description = description
-        advertisements.price = price
-        advertisements.category = category_field.value
-        advertisements.seller_contacts = seller_contacts.value
+        adv = Advertisements(title= title, description=description, price=price, category=category_field.value, seller_contacts=seller_contacts.value)
 
-        save_data(connection, advertisements)
+        save_data(connection, adv)
         logging.info("data saved")
 
         title_field.value = ""
@@ -64,7 +59,7 @@ def create_input_form(connection):
 
 
 def create_data_table(connection):
-    result = get_data(connection, "SELECT title, description, price, category, seller_contacts FROM products")
+    result = get_data(connection)
     for row in result:
         product_rows.append({
             'title': row[0],
