@@ -4,6 +4,6 @@ CREATE TABLE products (
     description TEXT,
     price FLOAT,
     category VARCHAR(255),
-    images TEXT,
+    images TEXT, --IMAGES нужны для расширения функционала в будущем
     seller_contacts VARCHAR(255)
 );

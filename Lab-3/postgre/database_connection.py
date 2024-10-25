@@ -2,7 +2,6 @@ import psycopg2
 from psycopg2 import Error
 from models import Advertisements
 
-
 def database_connect():
     try:
         connection = psycopg2.connect(
@@ -10,7 +9,7 @@ def database_connect():
             port=5430,
             database='Doska24',
             user='postgres',
-            password='admin'
+            password='password'
         )
         connection.autocommit = False
 
