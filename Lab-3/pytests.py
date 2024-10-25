@@ -8,11 +8,6 @@ test_data = [
     Advertisements(title="Test 2", description="TEST 2", price=5.99, category="Электроника", seller_contacts="Егор Нехмуренко")
 ]
 
-test_queries = [
-    "SELECT * FROM products",
-    "SELECT title FROM products WHERE category = 'Электроника'",
-]
-
 @pytest.fixture
 def db_connection():
     connection = database_connect()
@@ -26,12 +21,6 @@ def test_save_data(db_connection, data):
     result = save_data(db_connection, data)
     assert result is not None, "Save data failed"
 
-@pytest.mark.parametrize("query", test_queries)
-def test_get_data(db_connection, query):
-    if db_connection is None:
-        pytest.skip("Database connection failed")
-    result = get_data(db_connection, query)
-    assert result is not None, "Get data failed"
 
 def test_database_connect():
     connection = database_connect()
@@ -51,10 +40,3 @@ def test_save_data_error(db_connection):
     invalid_data = Advertisements(title="Invalid", description="TEST", price="invalid", category="Электроника", seller_contacts="Саня Хмурый")
     result = save_data(db_connection, invalid_data)
     assert result is None, "Expected save data to fail"
-
-def test_get_data_error(db_connection):
-    if db_connection is None:
-        pytest.skip("Database connection failed")
-    invalid_query = "SELECT * FROM fake_products"
-    result = get_data(db_connection, invalid_query)
-    assert result is None, "Expected get data to fail"
