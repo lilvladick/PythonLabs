@@ -1,0 +1,4 @@
+flet==0.24.1
+flet-core==0.24.1
+flet-runtime==0.24.1
+pytest==8.3.3

@@ -39,7 +39,7 @@ def database_close_connection(connection):
 def save_data(connection, data: Advertisements):
     try:
         cursor = connection.cursor()
-        cursor.execute(f"INSERT INTO products (title, description, price, category, seller_contacts) VALUES ('{data.title}','{data.description}',{data.price},'{data.category}','{data.seller_contacts}')")
+        cursor.execute(f"INSERT INTO products (title, description, price, category, seller_contacts) VALUES ('{data.title}','{data.description}','{data.price}','{data.category}','{data.seller_contacts}')")
         connection.commit()
         cursor.close()
 
